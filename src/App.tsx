@@ -1,9 +1,7 @@
+import Scoreboard from "./pages/Scoreboard";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
-  );
+  return <Scoreboard />;
 }
 
 export default App;

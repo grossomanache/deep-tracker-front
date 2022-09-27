@@ -9,9 +9,11 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./redux/store/store";
 
 const httpLink = createHttpLink({
-  uri: "https://hacker-graphql-eht.onrender.com/",
+  uri: process.env.REACT_APP_API_URL,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -34,9 +36,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>
 );
 
