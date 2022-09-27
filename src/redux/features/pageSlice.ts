@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PaginationState } from "../interfaces/PaginationInterfaces";
 
-const todaysDate = new Date();
-let previousDate = new Date();
-previousDate.setMonth(todaysDate.getMonth() - 24);
-
 const initialState = {
   page: 1,
   perPage: 4,
