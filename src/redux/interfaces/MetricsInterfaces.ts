@@ -8,10 +8,6 @@ export interface Metric {
   postedBy: UserData;
 }
 
-// type Metric {
-//   date: DateTime!
-//   id: ID!
-//   name: String!
-//   postedBy: User
-//   value: Int!
-// }
+export interface MetricsState {
+  metricRegistry: Metric[];
+}
