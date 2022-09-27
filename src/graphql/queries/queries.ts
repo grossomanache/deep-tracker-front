@@ -8,10 +8,17 @@ interface FeedInputs {
 
 export const FEED_QUERY = (props?: FeedInputs) => {
   let queryParameters = "";
+
   if (props) {
     const { filterByName, skip, take } = props;
-    queryParameters = `(filterByName: ${filterByName})`;
+    const filterParameter = filterByName
+      ? `filterByName: ${filterByName},`
+      : "";
+    const skipParameter = skip ? `skip: ${skip},` : "";
+    const takeParameter = take ? `take: ${take},` : "";
+    queryParameters = `(${filterParameter} ${skipParameter} ${takeParameter})`;
   }
+
   const query = gql`
     {
       feed ${queryParameters} {
