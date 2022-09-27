@@ -6,7 +6,7 @@ interface FeedInputs {
   take?: number;
 }
 
-export const FEED_QUERY = (props?: FeedInputs) => {
+export const feedQuery = (props?: FeedInputs) => {
   let queryParameters = "";
 
   if (props) {
