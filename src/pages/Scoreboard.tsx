@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { feedQuery } from "../graphql/queries/queries";
 import { Metric } from "../redux/interfaces/MetricsInterfaces";
 
