@@ -1,7 +1,11 @@
 import Scoreboard from "./pages/Scoreboard";
 
 function App() {
-  return <Scoreboard />;
+  return (
+    <>
+      <Scoreboard />
+    </>
+  );
 }
 
 export default App;

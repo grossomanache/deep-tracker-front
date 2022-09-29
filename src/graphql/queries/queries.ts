@@ -18,8 +18,9 @@ export const feedQuery = (props?: FeedInputs) => {
     const takeParameter = take ? `take: ${take},` : "";
     queryParameters = `(${filterParameter} ${skipParameter} ${takeParameter})`;
   }
-  const query = gql`
-    {
+
+  const GET_METRICS = gql`
+    query {
       feed ${queryParameters}{
         metrics {
           id
@@ -34,5 +35,5 @@ export const feedQuery = (props?: FeedInputs) => {
     }
   `;
 
-  return query;
+  return GET_METRICS;
 };
