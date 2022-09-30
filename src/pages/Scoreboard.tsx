@@ -1,25 +1,13 @@
 import { useQuery } from "@apollo/client";
+import MetricList from "../components/MetricList/MetricList";
 import { feedQuery } from "../graphql/queries/queries";
 import { Metric } from "../redux/interfaces/MetricsInterfaces";
 
 const Scoreboard = (): JSX.Element => {
-  const request = feedQuery({ take: 1 });
+  const request = feedQuery();
   const { data } = useQuery(request);
-  console.log(data);
 
-  return (
-    <div>
-      {data && (
-        <ul>
-          {data.feed.metrics.map((metric: Metric, index: number) => (
-            <li key={index}>
-              {metric.name}: {metric.value}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+  return <div>{data && <MetricList metrics={data.feed.metrics} />}</div>;
 };
 
 export default Scoreboard;
