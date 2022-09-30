@@ -1,14 +1,19 @@
 import { Metric } from "../../redux/interfaces/MetricsInterfaces";
+import { uniqueValues } from "../../utils/uniqueValues";
 
 const MetricList = ({ metrics }: { metrics: Metric[] }): JSX.Element => {
+  const leadMeasures = uniqueValues(metrics, "name");
   return (
-    <ul>
-      {metrics.map((metric: Metric, index: number) => (
-        <li key={index}>
-          {metric.name}: {metric.value}
-        </li>
-      ))}
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          {leadMeasures.map((leadMeasure, index) => (
+            <th key={index}>{leadMeasure}</th>
+          ))}
+        </tr>
+      </thead>
+    </table>
   );
 };
 
