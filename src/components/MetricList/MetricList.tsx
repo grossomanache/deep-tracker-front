@@ -1,10 +1,11 @@
 import { Metric } from "../../redux/interfaces/MetricsInterfaces";
-import { uniqueDates, uniqueValues } from "../../utils/uniqueValues";
+import { convertToTable } from "../../utils/convertToTable";
+import { uniqueDates, uniqueValues } from "../../utils/extractUnique";
 
 const MetricList = ({ metrics }: { metrics: Metric[] }): JSX.Element => {
   const leadMeasures = uniqueValues(metrics, "name");
   const dates = uniqueDates(metrics);
-  console.log(dates);
+  convertToTable(metrics);
   return (
     <table>
       <thead>
