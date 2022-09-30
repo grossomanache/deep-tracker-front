@@ -51,5 +51,18 @@
     "husky": "^7.0.0",
     "jest": "^29.0.3",
     "ts-jest": "^29.0.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/reportWebVitals.ts",
+      "!src/setupTests.ts",
+      "!src/react-app-env.d.ts",
+      "!coverage/*/.ts",
+      "!src/redux/interfaces/*.ts",
+      "!src/**/*.test.ts",
+      "!src/**/*.test.ts.snap",
+      "!src/**/*.test.tsx.snap",
+      "!src/**/*.test.tsx.snap"
+    ]
   }
 }
