@@ -1,25 +1,26 @@
 import { Metric } from "../../redux/interfaces/MetricsInterfaces";
 import { convertToTable } from "../../utils/convertToTable";
-import { uniqueDates, uniqueValues } from "../../utils/extractUnique";
 
 const MetricList = ({ metrics }: { metrics: Metric[] }): JSX.Element => {
-  const leadMeasures = uniqueValues(metrics, "name");
-  const dates = uniqueDates(metrics);
-  convertToTable(metrics);
+  const metricsTable = convertToTable(metrics);
+  const tableHeaders = metricsTable[0];
+  const tableBody = metricsTable.slice(1);
+
   return (
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          {leadMeasures.map((leadMeasure, index) => (
-            <th key={index}>{leadMeasure}</th>
+          {tableHeaders.map((header, index) => (
+            <th key={index}>{header}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {dates.map((date, index) => (
-          <tr key={index}>
-            <td>{date}</td>
+        {tableBody.map((row, rowNumber) => (
+          <tr key={rowNumber}>
+            {row.map((value, index) => (
+              <td key={index}>{value}</td>
+            ))}
           </tr>
         ))}
       </tbody>

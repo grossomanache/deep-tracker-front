@@ -9,20 +9,21 @@ export const convertToTable = (metrics: Metric[]) => {
     headers.push(leadMeasure);
   });
 
-  const dates = uniqueDates(metrics);
+  const allDates = uniqueDates(metrics);
 
   const convertedTable: (number | string)[][] = [headers];
 
-  dates.forEach((date) => {
-    const values: (number | string)[] = [date];
+  allDates.forEach((date) => {
+    const loggedValues: (number | string)[] = [date];
     leadMeasures.forEach((leadMeasure) => {
       const searchedMetric = metrics.filter(
-        (loggedMetric) =>
-          loggedMetric.name === leadMeasure &&
-          loggedMetric.date.toString().slice(0, 10) === date
+        ({ name, date: loggedDate }) =>
+          name === leadMeasure && loggedDate.toString().slice(0, 10) === date
       );
-      values.push(searchedMetric[0] ? searchedMetric[0].value : "N/A");
+      loggedValues.push(searchedMetric[0] ? searchedMetric[0].value : "N/A");
     });
-    convertedTable.push(values);
+    convertedTable.push(loggedValues);
   });
+
+  return convertedTable;
 };
