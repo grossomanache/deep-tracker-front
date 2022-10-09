@@ -1,12 +1,12 @@
 import { Metric } from "../redux/interfaces/MetricsInterfaces";
-import { uniqueDates, uniqueValues } from "./extractUnique";
+import { extractUniqueDates, extractUniqueValues } from "./extractUnique";
 
-export const convertToTable = (metrics: Metric[]) => {
-  const leadMeasures = uniqueValues(metrics, "name");
-  const allDates = uniqueDates(metrics);
+export const convertObjectOfMetricsToTable = (metrics: Metric[]) => {
+  const leadMeasures = extractUniqueValues(metrics, "name");
+  const allDates = extractUniqueDates(metrics);
 
   const headers = ["Date", ...leadMeasures];
-  const convertedTable: (number | string)[][] = [headers];
+  const tableContainingMetricInformation: (number | string)[][] = [headers];
 
   allDates.forEach((date) => {
     const tableRow: (number | string)[] = [date];
@@ -17,8 +17,8 @@ export const convertToTable = (metrics: Metric[]) => {
       );
       tableRow.push(searchedMetric ? searchedMetric.value : "N/A");
     });
-    convertedTable.push(tableRow);
+    tableContainingMetricInformation.push(tableRow);
   });
 
-  return convertedTable;
+  return tableContainingMetricInformation;
 };
