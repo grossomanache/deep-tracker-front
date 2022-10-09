@@ -1,5 +1,5 @@
 import { client } from "../../../graphql/client";
-import { feedQuery } from "../../../services/metricsService/queries";
+import { feedQuery } from "../../../graphql/queries/queries";
 import { loadActionCreator } from "../../features/metricsSlice";
 import { AppDispatch } from "../../store/store";
 
