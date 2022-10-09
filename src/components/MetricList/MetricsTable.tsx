@@ -1,13 +1,14 @@
 import { Metric } from "../../redux/interfaces/MetricsInterfaces";
-import { convertToTable } from "../../utils/convertToTable";
+import { convertObjectOfMetricsToTable } from "../../utils/convertToTable";
+import { MetricsTableContainer } from "./MetricsTableContainer";
 
-const MetricList = ({ metrics }: { metrics: Metric[] }): JSX.Element => {
-  const metricsTable = convertToTable(metrics);
+const MetricsTable = ({ metrics }: { metrics: Metric[] }): JSX.Element => {
+  const metricsTable = convertObjectOfMetricsToTable(metrics);
   const tableHeaders = metricsTable[0];
   const tableBody = metricsTable.slice(1);
 
   return (
-    <table>
+    <MetricsTableContainer>
       <thead>
         <tr>
           {tableHeaders.map((header, index) => (
@@ -24,8 +25,8 @@ const MetricList = ({ metrics }: { metrics: Metric[] }): JSX.Element => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </MetricsTableContainer>
   );
 };
 
-export default MetricList;
+export default MetricsTable;

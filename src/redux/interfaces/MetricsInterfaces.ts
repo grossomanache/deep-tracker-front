@@ -2,7 +2,7 @@ import { UserData } from "./UserInterface";
 
 export interface Metric {
   id: number;
-  date: Date;
+  date: string;
   name: string;
   value: number;
   postedBy: UserData;
