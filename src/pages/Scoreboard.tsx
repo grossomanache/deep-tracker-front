@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import DateFilter from "../components/DateFilter/DateFilter";
 import MetricsTable from "../components/MetricList/MetricsTable";
 import { useAppDispatch, useAppSelector } from "../redux/store/hooks";
 import { loadMetricsThunk } from "../redux/thunks/metricThunks/metricThunks";
@@ -17,6 +18,7 @@ const Scoreboard = (): JSX.Element => {
   return (
     <ScoreboardContainer>
       <h1>Historic metrics</h1>
+      <DateFilter />
       {metricRegistry && <MetricsTable metrics={metricRegistry} />}
     </ScoreboardContainer>
   );
