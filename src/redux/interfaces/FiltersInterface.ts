@@ -1,5 +1,5 @@
 export interface FiltersState {
   keyword?: string;
-  from?: Date;
-  to?: Date;
+  from?: string;
+  to?: string;
 }
