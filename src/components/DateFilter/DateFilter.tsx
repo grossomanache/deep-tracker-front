@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
@@ -13,21 +12,27 @@ import {
 
 const DateFilter = (): JSX.Element => {
   const { from, to }: FiltersState = useSelector(
-    (state: RootState) => state.filter
+    ({ filter }: RootState) => filter
   );
   const dispatch = useAppDispatch();
   return (
     <DateFilterContainer>
-      <DatePicker
-        selected={new Date(from as string)}
-        onChange={(date: Date) => {
-          dispatch(setStartDateActionCreator(date));
-        }}
-      />
-      <DatePicker
-        selected={new Date(to as string)}
-        onChange={(date: Date) => dispatch(setEndDateActionCreator(date))}
-      />
+      <div className="row text">
+        <p>From:</p>
+        <p>To:</p>
+      </div>
+      <div className="row filters">
+        <DatePicker
+          selected={new Date(from)}
+          onChange={(date: Date) => {
+            dispatch(setStartDateActionCreator(date));
+          }}
+        />
+        <DatePicker
+          selected={new Date(to)}
+          onChange={(date: Date) => dispatch(setEndDateActionCreator(date))}
+        />
+      </div>
     </DateFilterContainer>
   );
 };
