@@ -17,7 +17,7 @@ const DateFilter = (): JSX.Element => {
   );
   const dispatch = useAppDispatch();
 
-  const filterDates = () => () => dispatch(loadMetricsThunk());
+  const filterDates = () => () => dispatch(loadMetricsThunk({ from, to }));
 
   return (
     <DateFilterContainer>
@@ -29,12 +29,14 @@ const DateFilter = (): JSX.Element => {
         <DatePicker
           selected={new Date(from)}
           onChange={(date: Date) => {
-            dispatch(setStartDateActionCreator(date));
+            dispatch(setStartDateActionCreator(date.toISOString()));
           }}
         />
         <DatePicker
           selected={new Date(to)}
-          onChange={(date: Date) => dispatch(setEndDateActionCreator(date))}
+          onChange={(date: Date) =>
+            dispatch(setEndDateActionCreator(date.toISOString()))
+          }
         />
         <button onClick={filterDates()}>Filter</button>
       </div>

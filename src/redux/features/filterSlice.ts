@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FiltersState } from "../interfaces/FiltersInterface";
 
 const initialState: FiltersState = {
-  to: new Date().toDateString(),
-  from: new Date().toDateString(),
+  to: new Date().toISOString(),
+  from: new Date().toISOString(),
 };
 
 const filtersSlice = createSlice({
@@ -17,13 +17,13 @@ const filtersSlice = createSlice({
       ...filters,
       keyword: action.payload,
     }),
-    setStartDate: (filters: FiltersState, action: PayloadAction<Date>) => ({
+    setStartDate: (filters: FiltersState, action: PayloadAction<string>) => ({
       ...filters,
-      from: action.payload.toDateString(),
+      from: action.payload,
     }),
-    setEndDate: (filters: FiltersState, action: PayloadAction<Date>) => ({
+    setEndDate: (filters: FiltersState, action: PayloadAction<string>) => ({
       ...filters,
-      to: action.payload.toDateString(),
+      to: action.payload,
     }),
   },
 });
