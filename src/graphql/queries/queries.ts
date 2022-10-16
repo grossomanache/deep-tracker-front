@@ -1,12 +1,12 @@
 import { gql } from "@apollo/client";
 
-interface FeedInputs {
+export interface FeedInputs {
   filterByName?: string;
   skip?: number;
   take?: number;
 }
 
-export const feedQuery = (props?: FeedInputs) => {
+export const feedQuery = (props: FeedInputs | null = null) => {
   let queryParameters = "";
 
   if (props) {

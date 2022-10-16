@@ -9,12 +9,16 @@ import {
   setEndDateActionCreator,
   setStartDateActionCreator,
 } from "../../redux/features/filterSlice";
+import { loadMetricsThunk } from "../../redux/thunks/metricThunks/metricThunks";
 
 const DateFilter = (): JSX.Element => {
   const { from, to }: FiltersState = useSelector(
     ({ filter }: RootState) => filter
   );
   const dispatch = useAppDispatch();
+
+  const filterDates = () => () => dispatch(loadMetricsThunk());
+
   return (
     <DateFilterContainer>
       <div className="row text">
@@ -32,6 +36,7 @@ const DateFilter = (): JSX.Element => {
           selected={new Date(to)}
           onChange={(date: Date) => dispatch(setEndDateActionCreator(date))}
         />
+        <button onClick={filterDates()}>Filter</button>
       </div>
     </DateFilterContainer>
   );
