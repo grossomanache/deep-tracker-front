@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FiltersState } from "../interfaces/FiltersInterface";
 
+const today = new Date();
+const today3MonthsBack = new Date(new Date().setMonth(today.getMonth() - 3));
+
 const initialState: FiltersState = {
-  to: new Date().toISOString(),
-  from: new Date().toISOString(),
+  from: today3MonthsBack.toISOString(),
+  to: today.toISOString(),
 };
 
 const filtersSlice = createSlice({
